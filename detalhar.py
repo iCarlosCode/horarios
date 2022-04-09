@@ -3,7 +3,7 @@ from browser import document, alert
 def click(event):
     h = document["input_horario"].value
     document["text_resultado"].text = detalhar_horario(h.upper())
-    document["btn_horario"].bind("click", click)
+document["btn_horario"].bind("click", click)
 
 
 def detalhar_horario(h):
@@ -118,4 +118,4 @@ def detalhar_horario(h):
         else:
             return "Catapimbas, horário inexistente"
     except:
-        pass
+        print("\nDigite o horario corretamente")
