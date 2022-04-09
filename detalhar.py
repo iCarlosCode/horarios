@@ -2,7 +2,10 @@ from browser import document, alert
 
 def click(event):
     h = document["input_horario"].value
-    document["text_resultado"].text = detalhar_horario(h.upper())
+    resultado = detalhar_horario(h.upper())
+    document["text_dia"].text = resultado['dia']
+    document["text_turno"].text = resultado['turno']
+    document["text_horario"].text = resultado['horario']
 document["btn_horario"].bind("click", click)
 
 
@@ -18,11 +21,12 @@ def detalhar_horario(h):
             if ah[i] == 'T':
                 ah[i] = 'Tarde'
                 turno_pos = i
-            
-
             elif ah[i] == 'M':
                 ah[i] = 'Manhã'
                 turno_pos = i
+            elif ah[i] == 'N':
+                ah[i] = 'Noite'
+                turno_pos = i            
 
         c = 0
         teste = [[]]
@@ -63,7 +67,19 @@ def detalhar_horario(h):
                     teste[2][i] = 'Quinto horario: 17h'
                 elif teste[2][i] == '6':
                     teste[2][i] = 'Sexto horario: 18h'
-
+            elif turn == 'Noite':
+                if teste[2][i] == '1':
+                    teste[2][i] = 'Primeiro horario: 18h'
+                elif teste[2][i] == '2':
+                    teste[2][i] = 'Segundo horario: 19h'
+                elif teste[2][i] == '3':
+                    teste[2][i] = 'Terceiro horario: 20h'
+                elif teste[2][i] == '4':
+                    teste[2][i] = 'Quarto horario: 21h'
+                elif teste[2][i] == '5':
+                    teste[2][i] = 'Quinto horario: 22h'
+                elif teste[2][i] == '6':
+                    teste[2][i] = 'Sexto horario: 23h'
             else:
 
                 if teste[2][i] == '1':
@@ -79,14 +95,16 @@ def detalhar_horario(h):
                 elif teste[2][i] == '6':
                     teste[2][i] = 'Sexto horario: 12h'
 
-        view = f'''\n -- : 
-
-            \t\t\t  Dia: [ {' - '.join(teste[0])} ]
-            \t\t\t  Turno: [ {''.join(teste[1])} ]
-            \t\t\t  Hora: [ {' - '.join(teste[2])} ]
-
-                '''
+        view = f'''Dia: {' - '.join(teste[0])}
+Turno: {''.join(teste[1])}
+Hora: {' - '.join(teste[2])}'''
         print(view)
+
+        resultado = {'dia': ' - '.join(teste[0]),
+        'turno': ''.join(teste[1]),
+        'horario': ' - '.join(teste[2])
+        }
+        return resultado
         return view
     except:
         print("\nDigite o horario corretamente")
