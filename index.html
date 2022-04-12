@@ -12,16 +12,29 @@
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.0/brython.js">
     </script>
-   
-    </script>
+    <script type="text/javascript" src="controller.js" />
 </head>
 
 <body onload="brython()">
     <h1>Tradutor de Horários - UFRB </h1>
     <script type="text/python" src="detalhar.py"></script>
+    
     <div class="inputs">
         <input type="text" id="input_horario" placeholder="Ex: 2M123" /> 
         <input type="button" value="Detalhar Horário" id="btn_horario" width="40"/>
+    </div>
+    <div class="tableContainer">
+        <table id="table">
+          <tr class="headerTable">
+            <th>Horarios</th>
+            <th>Segunda</th>
+            <th>Terça</th>
+            <th>Quarta</th>
+            <th>Quinta</th>
+            <th>Sexta</th>
+            <th>Sabado</th>
+          </tr>
+        </table>
     </div>
     <p id="text_resultado"></p>
 </body>
